@@ -5,6 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import {timeRange} from 'rxjs-toolbox';
 import {TestScheduler} from 'rxjs/testing';
 
+interface User {
+  userId: number;
+  firstName: string;
+  lastName: string;
+}
 
 describe('SchedulersTestingComponent', () => {
   let component: SchedulersTestingComponent;
@@ -61,10 +66,10 @@ describe('SchedulersTestingComponent', () => {
   it('should get user data 3 times (with jasmine done() callback)', (done) => {
     const mockedComp = new SchedulersTestingComponent(mockHttp);
     const userData$ = mockedComp.getUserData(12, 0.01);
-    const result: {}[] = [];
+    const result: User[] = [];
 
     userData$.subscribe({
-      next: (value) => {
+      next: (value: any) => {
         result.push(value);
       },
       complete: () => {
@@ -86,11 +91,11 @@ describe('SchedulersTestingComponent', () => {
     mockHttp = {get: () => scheduled([{userId: 12, firstName: 'Yosemite', lastName: 'Sam'}], scheduler)}
     const mockedComp = new SchedulersTestingComponent(mockHttp);
     const userData$ = mockedComp.getUserDataAsyncScheduler(12, 0.01, scheduler);  
-    const result: {}[] = [];
+    const result: User[] = [];
     
 
     userData$.subscribe({
-      next: (value) => {
+      next: (value: any) => {
         result.push(value);
       }
     });
@@ -142,10 +147,10 @@ describe('SchedulersTestingComponent', () => {
     scheduler.maxFrames = Number.POSITIVE_INFINITY;
 
 
-    const result: {}[] = [];
+    const result: User[] = [];
 
     userData$.subscribe({
-      next: (value) => {
+      next: (value: any) => {
         result.push(value);
       }
     });
