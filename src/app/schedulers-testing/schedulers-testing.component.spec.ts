@@ -111,7 +111,7 @@ describe('SchedulersTestingComponent', () => {
   });
 
   // 3. Angular fakeAsync function:
-  it('should call this.http.get and get result', fakeAsync(() => {
+  it('should call http get and get request result', fakeAsync(() => {
     const input$ = timeRange([
       {value: {target: {value: 'aaa'}}, delay: 100},
       {value: {target: {value: 'aaab'}}, delay: 500},
